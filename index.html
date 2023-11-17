@@ -7,7 +7,12 @@
     <p id="greet"></p>
   </body>
   <script>
-    fetch(BACKEND_BASE_URL, {headers: {"ngrok-skip-browser-warning": ""}})
+    fetch(BACKEND_BASE_URL, {
+      method: "get",
+      headers: new Headers({
+        "ngrok-skip-browser-warning": "69420",
+      }),
+    })
       .then(res => res.json())
       .then(json => {
         const greetElement = document.getElementById("greet");
