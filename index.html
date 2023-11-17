@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <script src="BUILD_GENERATE_CONFIG.js"></script>
+  </head>
+  <body>
+    <p>Greet from colab:</p>
+    <p id="greet"></p>
+  </body>
+  <script>
+    fetch(BACKEND_BASE_URL)
+      .then(res => res.json())
+      .then(json => {
+        const greetElement = document.getElementById("greet");
+        greetElement.innerText = json.greet;
+      })
+  </script>
+</html>
