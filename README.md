@@ -11,3 +11,7 @@ At the repository page, click `Settings` -> `Secrets and variables` -> `Actions`
 ## Enable Github Page
 
 At the repository page, click `Settings` -> `Pages`, change `Deploy from a branch` to `Github Actions`.
+
+## Create PAT
+
+create PAT with `repo`, `workflow` and `read:org`
