@@ -9,9 +9,9 @@
   <script>
     fetch(BACKEND_BASE_URL, {
       method: "get",
-      headers: new Headers({
+      headers: {
         "ngrok-skip-browser-warning": "69420",
-      }),
+      },
     })
       .then(res => res.json())
       .then(json => {
