@@ -9,29 +9,26 @@
     <p id="books"></p>
   </body>
   <script>
+    const greetElement = document.getElementById("greet");
     fetch(BACKEND_BASE_URL, {
       method: "get",
       headers: {
         "ngrok-skip-browser-warning": "69420",
       },
     })
-      .then(res => res.json())
-      .then(json => {
-        const greetElement = document.getElementById("greet");
-        greetElement.innerText = json.greet;
-      })
+    .then(res => res.json())
+    .then(json => greetElement.innerText = json.greet)
+    .catch(_ => greetElement.innerText = "Something wrong happened in server ...")
 
-      
+    const booksElement = document.getElementById("books");
     fetch(`${BACKEND_BASE_URL}/books`, {
       method: "get",
       headers: {
         "ngrok-skip-browser-warning": "69420",
       },
     })
-      .then(res => res.json())
-      .then(json => {
-        const booksElement = document.getElementById("books");
-        booksElement.innerText = JSON.stringify(json);
-      })
+    .then(res => res.json())
+    .then(json => booksElement.innerText = JSON.stringify(json))
+    .catch(_ => greetElement.innerText = "Something wrong happened in server ...")
   </script>
 </html>
