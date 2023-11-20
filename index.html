@@ -29,6 +29,6 @@
     })
     .then(res => res.json())
     .then(json => booksElement.innerText = JSON.stringify(json))
-    .catch(_ => greetElement.innerText = "Something wrong happened in server ...")
+    .catch(_ => booksElement.innerText = "Something wrong happened in server ...")
   </script>
 </html>
