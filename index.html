@@ -5,6 +5,8 @@
   <body>
     <p>Greet from colab:</p>
     <p id="greet"></p>
+    <p>Books:</p>
+    <p id="books"></p>
   </body>
   <script>
     fetch(BACKEND_BASE_URL, {
@@ -17,6 +19,19 @@
       .then(json => {
         const greetElement = document.getElementById("greet");
         greetElement.innerText = json.greet;
+      })
+
+      
+    fetch(`${BACKEND_BASE_URL}/books`, {
+      method: "get",
+      headers: {
+        "ngrok-skip-browser-warning": "69420",
+      },
+    })
+      .then(res => res.json())
+      .then(json => {
+        const booksElement = document.getElementById("books");
+        booksElement.innerText = json;
       })
   </script>
 </html>
