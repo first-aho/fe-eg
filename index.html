@@ -31,8 +31,7 @@
       .then(res => res.json())
       .then(json => {
         const booksElement = document.getElementById("books");
-        console.log(json);
-        booksElement.innerText = json;
+        booksElement.innterText = JSON.stringify(json);
       })
   </script>
 </html>
