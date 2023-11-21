@@ -35,13 +35,13 @@
     listBooks();
 
     addBookButton.addEventListener("click", async e => {
-      e.preventDefualt();
+      e.preventDefault();
       e.stopPropagation();
       await addBook();
       listBooks();
     });
     addBookButton.addEventListener("touchend", async e => {
-      e.preventDefualt();
+      e.preventDefault();
       e.stopPropagation();
       await addBook();
       listBooks();
