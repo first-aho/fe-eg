@@ -40,7 +40,7 @@
       await addBook();
       listBooks();
     });
-    addBookButton.addEventListener("touchend", async _ => {
+    addBookButton.addEventListener("touchend", async e => {
       e.preventDefualt();
       e.stopPropagation();
       await addBook();
