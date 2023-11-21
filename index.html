@@ -41,7 +41,7 @@
 
     function addBook() {
       const name = nameInput.value;
-      const price = priceInput.value;
+      const price = parseInt(priceInput.value) || 0;
       fetch(`${BACKEND_BASE_URL}/books/add`, {
         method: "POST",
         headers: {
