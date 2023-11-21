@@ -35,14 +35,13 @@
     listBooks();
 
     addBookButton.addEventListener("click", _ => {
-      addBook();
-      listBooks();
+      addBook().then(_ => listBooks());
     });
 
     function addBook() {
       const name = nameInput.value;
       const price = parseInt(priceInput.value) || 0;
-      fetch(`${BACKEND_BASE_URL}/books/add`, {
+      return fetch(`${BACKEND_BASE_URL}/books/add`, {
         method: "POST",
         headers: {
           "ngrok-skip-browser-warning": "12345",
@@ -54,9 +53,6 @@
           nameInput.value = "";
           priceInput.value = "";
         })
-        .catch(_ => {
-          alert("failed to add book ...");
-        });
     }
 
     function listBooks() {
