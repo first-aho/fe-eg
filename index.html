@@ -34,14 +34,15 @@
 
     listBooks();
 
-    addBookButton.addEventListener("click", _ => {
-      addBook().then(_ => listBooks());
+    addBookButton.addEventListener("click", async _ => {
+      await addBook();
+      listBooks();
     });
 
-    function addBook() {
+    async function addBook() {
       const name = nameInput.value;
       const price = parseInt(priceInput.value) || 0;
-      return fetch(`${BACKEND_BASE_URL}/books/add`, {
+      await fetch(`${BACKEND_BASE_URL}/books/add`, {
         method: "POST",
         headers: {
           "ngrok-skip-browser-warning": "12345",
@@ -49,10 +50,8 @@
         },
         body: JSON.stringify({name, price}),
       })
-        .then(_ => {
-          nameInput.value = "";
-          priceInput.value = "";
-        })
+      nameInput.value = "";
+      priceInput.value = "";
     }
 
     function listBooks() {
