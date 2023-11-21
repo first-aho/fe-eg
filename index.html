@@ -5,11 +5,23 @@
   <body>
     <p>Greet from colab:</p>
     <p id="greet"></p>
+    <div>
+      <label for="name-input">Name: </label>
+      <input type="text" id="name-input"/>
+      <label for="price-input">Price: </label>
+      <input type="number" id="price-input"/>
+      <input type="button" value="add book" id="add-book-button"/>
+    </div>
     <p>Books:</p>
     <p id="books"></p>
   </body>
   <script>
     const greetElement = document.getElementById("greet");
+    const booksElement = document.getElementById("books");
+    const addBookButton = document.getElementById("add-book-button");
+    const nameInput = document.getElementById("name-input");
+    const priceInput = document.getElementById("price-input");
+    
     fetch(BACKEND_BASE_URL, {
       method: "get",
       headers: {
@@ -20,15 +32,43 @@
     .then(json => greetElement.innerText = json.greet)
     .catch(_ => greetElement.innerText = "Something wrong happened in server ...")
 
-    const booksElement = document.getElementById("books");
-    fetch(`${BACKEND_BASE_URL}/books`, {
-      method: "get",
-      headers: {
-        "ngrok-skip-browser-warning": "69420",
-      },
-    })
-    .then(res => res.json())
-    .then(json => booksElement.innerText = JSON.stringify(json))
-    .catch(_ => booksElement.innerText = "Something wrong happened in server ...")
+    listBooks();
+
+    addBookButton.addEventListener("click", _ => {
+      addBook();
+      listBooks();
+    });
+
+    function addBook() {
+      const name = nameInput.value;
+      const price = priceInput.value;
+      fetch(`${BACKEND_BASE_URL}/books/add`, {
+        method: "POST",
+        headers: {
+          "ngrok-skip-browser-warning": "12345",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({name, price}),
+      })
+        .then(_ => {
+          nameInput.value = "";
+          priceInput.value = "";
+        })
+        .catch(_ => {
+          alert("failed to add book ...");
+        });
+    }
+
+    function listBooks() {
+      fetch(`${BACKEND_BASE_URL}/books`, {
+        method: "get",
+        headers: {
+          "ngrok-skip-browser-warning": "69420",
+        },
+      })
+        .then(res => res.json())
+        .then(json => booksElement.innerText = JSON.stringify(json))
+        .catch(_ => booksElement.innerText = "Something wrong happened in server ...")
+    }
   </script>
 </html>
