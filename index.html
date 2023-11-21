@@ -34,11 +34,15 @@
 
     listBooks();
 
-    addBookButton.addEventListener("click", async _ => {
+    addBookButton.addEventListener("click", async e => {
+      e.preventDefualt();
+      e.stopPropagation();
       await addBook();
       listBooks();
     });
     addBookButton.addEventListener("touchend", async _ => {
+      e.preventDefualt();
+      e.stopPropagation();
       await addBook();
       listBooks();
     });
