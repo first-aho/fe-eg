@@ -38,6 +38,10 @@
       await addBook();
       listBooks();
     });
+    addBookButton.addEventListener("touchend", async _ => {
+      await addBook();
+      listBooks();
+    });
 
     async function addBook() {
       const name = nameInput.value;
